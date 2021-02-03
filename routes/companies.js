@@ -77,13 +77,6 @@ router.put("/:code", async (req, res, next) => {
 
 router.delete("/:code", async (req, res, next) => {
   try {
-    const { name, description } = req.body;
-    if (!name || !description) {
-      const expressError = new ExpressError(
-        "Require name, and description in request", 400
-      );
-      return next(expressError);
-    }
     // first make sure can find company
     const result = await db.query(
       "SELECT code FROM companies WHERE code=$1",
